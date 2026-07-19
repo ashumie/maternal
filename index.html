@@ -6,15 +6,19 @@
     <title>Zenu Clinic | Maternal & Child Care</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts for a soft, friendly look -->
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts for English/Afaan Oromo & Amharic Ethiopic Script -->
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Noto+Sans+Ethiopic:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Quicksand', sans-serif;
         }
+        /* Automatically switch font styling when Amharic is chosen to keep text elegant */
+        body.lang-am {
+            font-family: 'Noto Sans Ethiopic', 'Quicksand', sans-serif;
+        }
         #home {
-    background-color: lightblue;
-}
+            background-color: lightblue;
+        }
     </style>
 </head>
 <body class="bg-amber-50/30 text-gray-800 scroll-smooth">
@@ -30,23 +34,37 @@
             
             <!-- Navigation Links -->
             <nav class="hidden md:flex space-x-8 text-gray-600 font-medium">
-                <a href="#home" class="hover:text-rose-500 transition">Home</a>
-                <a href="#about" class="hover:text-rose-500 transition">About Us</a>
-                <a href="#services" class="hover:text-rose-500 transition">Services</a>
-                <a href="#appointment" class="hover:text-rose-500 transition">Book Appointment</a>
+                <a href="#home" data-i18n="nav_home" class="hover:text-rose-500 transition">Home</a>
+                <a href="#about" data-i18n="nav_about" class="hover:text-rose-500 transition">About Us</a>
+                <a href="#services" data-i18n="nav_services" class="hover:text-rose-500 transition">Services</a>
+                <a href="#appointment" data-i18n="nav_book" class="hover:text-rose-500 transition">Book Appointment</a>
             </nav>
 
-            <!-- CTA Button -->
-            <div class="hidden md:block">
-                <a href="#appointment" class="bg-rose-500 hover:bg-rose-600 text-white px-5 py-2.5 rounded-full font-semibold transition shadow-md hover:shadow-lg">
+            <!-- Language Picker & CTA Button Container -->
+            <div class="hidden md:flex items-center space-x-4">
+                <!-- Language Selector Dropdown -->
+                <select id="languageSelector" class="bg-gray-50 border border-gray-300 text-gray-700 py-1.5 px-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-400 font-medium text-sm cursor-pointer">
+                    <option value="en">English</option>
+                    <option value="am">አማርኛ (Amharic)</option>
+                    <option value="om">Afaan Oromo</option>
+                </select>
+
+                <a href="#appointment" data-i18n="btn_book_now" class="bg-rose-500 hover:bg-rose-600 text-white px-5 py-2.5 rounded-full font-semibold transition shadow-md hover:shadow-lg">
                     Book Now
                 </a>
             </div>
 
-            <!-- Mobile Menu Toggle (Simplified) -->
-            <button class="md:hidden text-gray-600 focus:outline-none">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-            </button>
+            <!-- Mobile Menu Switcher Only (Simplified for interface scale) -->
+            <div class="md:hidden flex items-center space-x-2">
+                <select id="languageSelectorMobile" class="bg-gray-50 border border-gray-300 text-gray-700 py-1 px-2 rounded-lg text-xs">
+                    <option value="en">EN</option>
+                    <option value="am">አማ</option>
+                    <option value="om">OM</option>
+                </select>
+                <button class="text-gray-600 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+            </div>
         </div>
     </header>
 
@@ -56,20 +74,20 @@
             
             <!-- Hero Text -->
             <div class="space-y-6 text-center lg:text-left">
-                <span class="bg-rose-100 text-rose-600 text-sm font-semibold px-4 py-1.5 rounded-full inline-block">
+                <span data-i18n="hero_badge" class="bg-rose-100 text-rose-600 text-sm font-semibold px-4 py-1.5 rounded-full inline-block">
                     Gentle Care for Mothers & Little Ones
                 </span>
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
+                <h1 id="hero_headline" class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
                     Nurturing your family from <span class="text-rose-500">the very start.</span>
                 </h1>
-                <p class="text-gray-600 text-lg md:text-xl max-w-xl mx-auto lg:mx-0">
-                    At Zenu Clinic, we we offer compassionate prenatal, postnatal, and pediatric care designed to give you peace of mind and your child a healthy beginning.
+                <p data-i18n="hero_description" class="text-gray-600 text-lg md:text-xl max-w-xl mx-auto lg:mx-0">
+                    At Zenu Clinic, we offer compassionate prenatal, postnatal, and pediatric care designed to give you peace of mind and your child a healthy beginning.
                 </p>
                 <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
-                    <a href="#appointment" class="bg-sky-500 hover:bg-sky-600 text-white px-8 py-3.5 rounded-full font-bold text-center transition shadow-lg">
+                    <a href="#appointment" data-i18n="btn_schedule" class="bg-sky-500 hover:bg-sky-600 text-white px-8 py-3.5 rounded-full font-bold text-center transition shadow-lg">
                         Schedule a Visit
                     </a>
-                    <a href="mailto:hello@zenuclinic.com" class="border-2 border-gray-300 hover:border-gray-400 text-gray-700 px-8 py-3.5 rounded-full font-bold text-center transition">
+                    <a href="mailto:hello@zenuclinic.com" data-i18n="btn_email" class="border-2 border-gray-300 hover:border-gray-400 text-gray-700 px-8 py-3.5 rounded-full font-bold text-center transition">
                         Email Our Team
                     </a>
                 </div>
@@ -77,21 +95,12 @@
 
             <!-- Hero Image Placeholders -->
             <div class="relative flex justify-center">
-                <!-- Decorative backgrounds -->
                 <div class="absolute -top-12 -left-12 w-64 h-64 bg-rose-200/40 rounded-full blur-3xl -z-10"></div>
                 <div class="absolute -bottom-12 -right-12 w-64 h-64 bg-sky-200/40 rounded-full blur-3xl -z-10"></div>
                 
-                <!-- Stylized image frame -->
                 <div class="w-full max-w-md h-[400px] bg-slate-200 rounded-3xl overflow-hidden shadow-2xl border-8 border-white">
-                    
                     <img src="image2.jpg" alt="Happy Mother & Baby" class="w-full h-full object-cover">
-</div>
-                <!--<div class="w-full max-w-md h-[400px] bg-slate-200 rounded-3xl overflow-hidden shadow-2xl border-8 border-white flex items-center justify-center text-gray-400 text-center p-6">
-                    <div>
-                        <svg class="w-16 h-16 mx-auto mb-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
-                        <p class="font-medium text-gray-500">Happy Mother &&& Baby Illustration / Image</p>
-                    </div>
-                </div>-->
+                </div>
             </div>
 
         </div>
@@ -101,16 +110,16 @@
     <section class="py-16 bg-white">
         <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
             <div class="p-6 bg-rose-50/50 rounded-2xl border border-rose-100">
-                <h3 class="text-xl font-bold text-rose-600 mb-2">Maternal Care</h3>
-                <p class="text-gray-600">Comprehensive support from prenatal checks to postpartum recovery.</p>
+                <h3 data-i18n="card_maternal_title" class="text-xl font-bold text-rose-600 mb-2">Maternal Care</h3>
+                <p data-i18n="card_maternal_desc" class="text-gray-600">Comprehensive support from prenatal checks to postpartum recovery.</p>
             </div>
             <div class="p-6 bg-sky-50/50 rounded-2xl border border-sky-100">
-                <h3 class="text-xl font-bold text-sky-600 mb-2">Pediatric Health</h3>
-                <p class="text-gray-600">Gentle check-ups, immunizations, and developmental monitoring.</p>
+                <h3 data-i18n="card_pediatric_title" class="text-xl font-bold text-sky-600 mb-2">Pediatric Health</h3>
+                <p data-i18n="card_pediatric_desc" class="text-gray-600">Gentle check-ups, immunizations, and developmental monitoring.</p>
             </div>
             <div class="p-6 bg-amber-50/50 rounded-2xl border border-amber-100">
-                <h3 class="text-xl font-bold text-amber-600 mb-2">Lactation & Support</h3>
-                <p class="text-gray-600">Expert guidance for breastfeeding, nutrition, and maternal wellness.</p>
+                <h3 data-i18n="card_lactation_title" class="text-xl font-bold text-amber-600 mb-2">Lactation & Support</h3>
+                <p data-i18n="card_lactation_desc" class="text-gray-600">Expert guidance for breastfeeding, nutrition, and maternal wellness.</p>
             </div>
         </div>
     </section>
@@ -119,8 +128,8 @@
     <section id="appointment" class="py-20 bg-slate-50">
         <div class="max-w-3xl mx-auto px-6">
             <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Request an Appointment</h2>
-                <p class="text-gray-600 mt-2">Take the first step toward personalized, worry-free care. Fill out the form below and our care team will be in touch shortly.</p>
+                <h2 data-i18n="form_title" class="text-3xl md:text-4xl font-bold text-gray-900">Request an Appointment</h2>
+                <p data-i18n="form_subtitle" class="text-gray-600 mt-2">Take the first step toward personalized, worry-free care. Fill out the form below and our care team will be in touch shortly.</p>
             </div>
 
             <!-- Interactive Form -->
@@ -129,37 +138,37 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <!-- Name -->
                         <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">Full Name</label>
-                            <input type="text" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-400 focus:border-transparent transition" placeholder="Your Name">
+                            <label data-i18n="label_name" class="block text-sm font-semibold text-gray-700 mb-2">Full Name</label>
+                            <input type="text" required id="input_name" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-400 focus:border-transparent transition" placeholder="Your Name">
                         </div>
                         <!-- Email -->
                         <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">Email Address</label>
-                            <input type="email" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-400 focus:border-transparent transition" placeholder="you@example.com">
+                            <label data-i18n="label_email" class="block text-sm font-semibold text-gray-700 mb-2">Email Address</label>
+                            <input type="email" required id="input_email" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-400 focus:border-transparent transition" placeholder="you@example.com">
                         </div>
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <!-- Phone -->
                         <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">Phone Number</label>
-                            <input type="tel" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-400 focus:border-transparent transition" placeholder="(123) 456-7890">
+                            <label data-i18n="label_phone" class="block text-sm font-semibold text-gray-700 mb-2">Phone Number</label>
+                            <input type="tel" required id="input_phone" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-400 focus:border-transparent transition" placeholder="(123) 456-7890">
                         </div>
                         <!-- Preferred Date -->
                         <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">Preferred Date</label>
+                            <label data-i18n="label_date" class="block text-sm font-semibold text-gray-700 mb-2">Preferred Date</label>
                             <input type="date" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-400 focus:border-transparent transition">
                         </div>
                     </div>
 
                     <!-- Message/Reason -->
                     <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">How can we help you?</label>
-                        <textarea rows="4" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-400 focus:border-transparent transition" placeholder="Describe any specific needs or concerns..."></textarea>
+                        <label data-i18n="label_message" class="block text-sm font-semibold text-gray-700 mb-2">How can we help you?</label>
+                        <textarea rows="4" id="input_message" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-400 focus:border-transparent transition" placeholder="Describe any specific needs or concerns..."></textarea>
                     </div>
 
                     <!-- Submit Button -->
-                    <button type="submit" class="w-full bg-rose-500 hover:bg-rose-600 text-white font-bold py-4 rounded-xl transition duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                    <button type="submit" data-i18n="btn_submit" class="w-full bg-rose-500 hover:bg-rose-600 text-white font-bold py-4 rounded-xl transition duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
                         Send Booking Request
                     </button>
                 </form>
@@ -176,14 +185,14 @@
                     <span class="text-2xl font-bold text-rose-400">Zenu</span>
                     <span class="text-2xl font-light text-sky-400">Clinic</span>
                 </a>
-                <p class="text-gray-400">
+                <p data-i18n="footer_brand_desc" class="text-gray-400">
                     Dedicated maternal and child services crafted with warmth, expertise, and a patient-first approach.
                 </p>
             </div>
 
             <!-- Contact Details -->
             <div>
-                <h4 class="text-white font-semibold text-lg mb-4">Contact Info</h4>
+                <h4 data-i18n="footer_contact_title" class="text-white font-semibold text-lg mb-4">Contact Info</h4>
                 <ul class="space-y-3">
                     <li class="flex items-center space-x-3">
                         <svg class="w-5 h-5 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
@@ -198,11 +207,11 @@
 
             <!-- Hours of Operation -->
             <div>
-                <h4 class="text-white font-semibold text-lg mb-4">Our Hours</h4>
+                <h4 data-i18n="footer_hours_title" class="text-white font-semibold text-lg mb-4">Our Hours</h4>
                 <ul class="space-y-2 text-gray-400">
-                    <li>Monday - Friday: 8:00 AM - 6:00 PM</li>
-                    <li>Saturday: 9:00 AM - 2:00 PM</li>
-                    <li>Sunday: Closed</li>
+                    <li id="hour_weekday">Monday - Friday: 8:00 AM - 6:00 PM</li>
+                    <li id="hour_sat">Saturday: 9:00 AM - 2:00 PM</li>
+                    <li id="hour_sun">Sunday: Closed</li>
                 </ul>
             </div>
         </div>
@@ -210,13 +219,186 @@
         <hr class="border-gray-800 my-10 max-w-7xl mx-auto">
 
         <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
-            <p>&copy; 2026 Zenu Clinic. All rights reserved.</p>
+            <p id="footer_copyright">&copy; 2026 Zenu Clinic. All rights reserved.</p>
             <div class="flex space-x-4 mt-4 md:mt-0">
-                <a href="#" class="hover:text-gray-400">Privacy Policy</a>
-                <a href="#" class="hover:text-gray-400">Terms of Service</a>
+                <a href="#" data-i18n="footer_privacy" class="hover:text-gray-400">Privacy Policy</a>
+                <a href="#" data-i18n="footer_terms" class="hover:text-gray-400">Terms of Service</a>
             </div>
         </div>
     </footer>
 
+    <!-- i18n Translation Script Engine -->
+    <script>
+        const translations = {
+            en: {
+                nav_home: "Home",
+                nav_about: "About Us",
+                nav_services: "Services",
+                nav_book: "Book Appointment",
+                btn_book_now: "Book Now",
+                hero_badge: "Gentle Care for Mothers & Little Ones",
+                hero_headline: 'Nurturing your family from <span class="text-rose-500">the very start.</span>',
+                hero_description: "At Zenu Clinic, we offer compassionate prenatal, postnatal, and pediatric care designed to give you peace of mind and your child a healthy beginning.",
+                btn_schedule: "Schedule a Visit",
+                btn_email: "Email Our Team",
+                card_maternal_title: "Maternal Care",
+                card_maternal_desc: "Comprehensive support from prenatal checks to postpartum recovery.",
+                card_pediatric_title: "Pediatric Health",
+                card_pediatric_desc: "Gentle check-ups, immunizations, and developmental monitoring.",
+                card_lactation_title: "Lactation & Support",
+                card_lactation_desc: "Expert guidance for breastfeeding, nutrition, and maternal wellness.",
+                form_title: "Request an Appointment",
+                form_subtitle: "Take the first step toward personalized, worry-free care. Fill out the form below and our care team will be in touch shortly.",
+                label_name: "Full Name",
+                label_email: "Email Address",
+                label_phone: "Phone Number",
+                label_date: "Preferred Date",
+                label_message: "How can we help you?",
+                btn_submit: "Send Booking Request",
+                footer_brand_desc: "Dedicated maternal and child services crafted with warmth, expertise, and a patient-first approach.",
+                footer_contact_title: "Contact Info",
+                footer_hours_title: "Our Hours",
+                hour_weekday: "Monday - Friday: 8:00 AM - 6:00 PM",
+                hour_sat: "Saturday: 9:00 AM - 2:00 PM",
+                hour_sun: "Sunday: Closed",
+                footer_copyright: "&copy; 2026 Zenu Clinic. All rights reserved.",
+                footer_privacy: "Privacy Policy",
+                footer_terms: "Terms of Service",
+                // Placeholders
+                ph_name: "Your Name",
+                ph_email: "you@example.com",
+                ph_phone: "(123) 456-7890",
+                ph_msg: "Describe any specific needs or concerns..."
+            },
+            am: {
+                nav_home: "ዋና ገጽ",
+                nav_about: "ስለ እኛ",
+                nav_services: "አገልግሎቶች",
+                nav_book: "ቀጠሮ ይያዙ",
+                btn_book_now: "አሁኑኑ ይቁረጡ",
+                hero_badge: "ለእናቶች እና ለሕፃናት እክብካቤ",
+                hero_headline: 'ቤተሰብዎን <span class="text-rose-500">ከጅምሩ እንንከባከባለን።</span>',
+                hero_description: "በዜኑ ክሊኒክ ለእናንተ የአእምሮ ሰላም፣ ለልጅዎ ደግሞ ጤናማ ጅምር ለመስጠት ታስቦ የተዘጋጀ ሩህሩህ የቅድመ-ወሊድ፣ የድህረ-ወሊድ እና የህፃናት ህክምና እንሰጣለን።",
+                btn_schedule: "ጉብኝት ያቅዱ",
+                btn_email: "ለቡድናችን ኢሜይል ያድርጉ",
+                card_maternal_title: "የእናቶች እንክብካቤ",
+                card_maternal_desc: "ከቅድመ ወሊድ ምርመራ ጀምሮ እስከ ድህረ ወሊድ ማገገሚያ ድረስ የተሟላ ድጋፍ።",
+                card_pediatric_title: "የህፃናት ጤና",
+                card_pediatric_desc: "ለስላሳ ምርመራዎች፣ ክትባቶች እና የእድገት ክትትል።",
+                card_lactation_title: "የጡት ማጥባት ድጋፍ",
+                card_lactation_desc: "ስለ ጡት ማጥባት፣ የአመጋገብ ስርዓት እና የእናቶች ጤና የባለሙያ መመሪያ።",
+                form_title: "የቀጠሮ ጥያቄ ያቅርቡ",
+                form_subtitle: "የእርስዎን እንክብካቤ ለማግኘት የመጀመሪያውን እርምጃ ይውሰዱ። ከታች ያለውን ፎርም ይሙሉ እና የእንክብካቤ ቡድናችን በቅርቡ ያገኝዎታል።",
+                label_name: "ሙሉ ስም",
+                label_email: "ኢሜይል አድራሻ",
+                label_phone: "የስልክ ቁጥር",
+                label_date: "የተመረጠ ቀን",
+                label_message: "እንዴት ልንረዳዎ እንችላለን?",
+                btn_submit: "የቀጠሮ ጥያቄ ይላኩ",
+                footer_brand_desc: "በፍቅር፣ በባለሙያ ክህሎት እና በታካሚ ቅድሚያ አቀራረብ የተሰሩ የእናቶች እና የህፃናት አገልግሎቶች።",
+                footer_contact_title: "የመገናኛ መረጃ",
+                footer_hours_title: "የስራ ሰዓታት",
+                hour_weekday: "ከሰኞ - አርብ: ከጠዋቱ 2:00 - ከሰዓት 12:00",
+                hour_sat: "ቅዳሜ: ከጠዋቱ 3:00 - ከሰዓት 8:00",
+                hour_sun: "እሁድ: ተዘግቷል",
+                footer_copyright: "&copy; 2026 ዜኑ ክሊኒክ። መብቱ በህግ የተጠበቀ ነው።",
+                footer_privacy: "የግል መረጃ ጥበቃ ፖሊሲ",
+                footer_terms: "የአጠቃቀም ደንቦች",
+                ph_name: "ስምዎ",
+                ph_email: "ስምዎ@example.com",
+                ph_phone: "09...",
+                ph_msg: "ማናቸውንም ፍላጎቶች ወይም ስጋቶች ያብራሩ..."
+            },
+            om: {
+                nav_home: "Ka'umsa",
+                nav_about: "Sooloo Keenya",
+                nav_services: "Tajaajiloota",
+                nav_book: "Beellama Qabadhu",
+                btn_book_now: "Amma Qabadhu",
+                hero_badge: "Kunnuunsa Lallafaa Haadhotaaf & Daa'immaniif",
+                hero_headline: 'Maatii keessan <span class="text-rose-500">jalqaba irraa</span> kunuunsa.',
+                hero_description: "Kilinika Zeenuutti, tajaajila nagaa sammuu isiniif kennuu fi daa'ima keessaniif jalqaba fayyaalessa uumuuf yaadamee qophaa'e dhiyeessina.",
+                btn_schedule: "Dawwannaa Saganteessi",
+                btn_email: "Garee Keenyaaf Imeelii Barreessi",
+                card_maternal_title: "Kunuunsa Haadhaa",
+                card_maternal_desc: "Deeggarsa guutuu sakatta'iinsa da'umsaa duraa irraa jalqabee hanga bayyanannaa da'umsaa boodaatti.",
+                card_pediatric_title: "Fayyaa Daa'immanii",
+                card_pediatric_desc: "Sakatta'iinsa lallafaa, talaallii fi hordoffii guddina daa'immanii.",
+                card_lactation_title: "Hoosisuu & Deeggarsa",
+                card_lactation_desc: "Qajeelfama ogummaa harma hoosisuu, nyaataa fi fayyaa haadhootaa.",
+                form_title: "Beellama Gaafadhu",
+                form_subtitle: "Tarkaanfii jalqabaa gara kunuunsa dhuunfaatti fudhadhu. Unka gadii guuti, gareen kunuunsa keenyaa yeroo gabaabaa keessatti si quunnama.",
+                label_name: "Maqaa Guutuu",
+                label_email: "Teessoo Imeelii",
+                label_phone: "Lakkofsa Bilbilaa",
+                label_date: "Guyyaa Filatamaa",
+                label_message: "Akkamitti si gargaaruu dandeenya?",
+                btn_submit: "Gaaffii Beellamaa Ergamaa",
+                footer_brand_desc: "Tajaajilli haadhaa fi daa'immanii oo'a, ogummaa fi dursa dhukkubsataaf kennuun qophaa'e.",
+                footer_contact_title: "Quunnamtii",
+                footer_hours_title: "Saa'atii Hojii",
+                hour_weekday: "Wiixata - Jimaata: 8:00 AM - 6:00 PM",
+                hour_sat: "Sanbata: 9:00 AM - 2:00 PM",
+                hour_sun: "Dilbata: Cufamaa",
+                footer_copyright: "&copy; 2026 Kilinika Zenu. Mirgi qopheessaa seeraan eeggamaadha.",
+                footer_privacy: "Imaammata Mateenyaa",
+                footer_terms: "Haalawwan Tajaajilaa",
+                ph_name: "Maqaa Keessan",
+                ph_email: "ati@example.com",
+                ph_phone: "(123) 456-7890",
+                ph_msg: "Waan addaa isin barbaachisu ibsa..."
+            }
+        };
+
+        function setLanguage(lang) {
+            // Update document lang attribute
+            document.documentElement.lang = lang;
+            
+            // Toggle body class for font loading adjustments
+            if (lang === 'am') {
+                document.body.classList.add('lang-am');
+            } else {
+                document.body.classList.remove('lang-am');
+            }
+
+            // Loop through data attributes and update text
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+
+            // Target HTML strings directly for areas containing inner spans (like headlines)
+            document.getElementById('hero_headline').innerHTML = translations[lang]['hero_headline'];
+
+            // Update footer list hours explicitly
+            document.getElementById('hour_weekday').textContent = translations[lang]['hour_weekday'];
+            document.getElementById('hour_sat').textContent = translations[lang]['hour_sat'];
+            document.getElementById('hour_sun').textContent = translations[lang]['hour_sun'];
+            document.getElementById('footer_copyright').innerHTML = translations[lang]['footer_copyright'];
+
+            // Update Form Input Placeholders
+            document.getElementById('input_name').placeholder = translations[lang]['ph_name'];
+            document.getElementById('input_email').placeholder = translations[lang]['ph_email'];
+            document.getElementById('input_phone').placeholder = translations[lang]['ph_phone'];
+            document.getElementById('input_message').placeholder = translations[lang]['ph_msg'];
+
+            // Sync the dropdown selectors
+            document.getElementById('languageSelector').value = lang;
+            document.getElementById('languageSelectorMobile').value = lang;
+        }
+
+        // Add change event listeners to selectors
+        document.getElementById('languageSelector').addEventListener('change', (e) => {
+            setLanguage(e.target.value);
+        });
+        document.getElementById('languageSelectorMobile').addEventListener('change', (e) => {
+            setLanguage(e.target.value);
+        });
+
+        // Initialize default language on load
+        setLanguage('en');
+    </script>
 </body>
 </html>
